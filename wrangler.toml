@@ -1,0 +1,3 @@
+name = "codeclub-3"
+main = "src/index.js"
+compatibility_date = "2022-09-24"
