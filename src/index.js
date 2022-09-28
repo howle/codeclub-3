@@ -22,14 +22,14 @@
  * 
  * 
  * **/
+ addEventListener('fetch', event => { 
+	event.respondWith(handleRequest(event.request))
+	})
 
+	const badScore = 40 ;
+//	const humanTrueBool = (define with parsed value from bm.request) 
+	
 
- export default {
-
-	// define automation 'score' 
-	// define cf bot mgmnt score
-	// jsonify 
-	async fetch(request) {
-		return new Response("his");
-	},
-};
+	async function handleRequest(request) { 
+		return new Response(JSON.stringify(request.cf))
+	}
