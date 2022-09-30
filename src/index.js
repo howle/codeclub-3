@@ -26,10 +26,20 @@
 	event.respondWith(handleRequest(event.request))
 	})
 
-	const badScore = 40 ;
-//	const humanTrueBool = (define with parsed value from bm.request) 
-	
+
 
 	async function handleRequest(request) { 
-		return new Response(JSON.stringify(request.cf))
-	}
+		// set userScore
+		const userScore = (request.cf.botManagement.score); 
+		// determine int for "badscore"
+		const badScore = 40 ;
+		// create boolean - human is true
+		const humanTrueBool = userScore > badScore ; 
+		//  if true then; 		
+		if (humanTrueBool) { 
+			return new Response("Welcome Human :)")
+		}
+		else
+		//return JSON of request.cf.botManagement field and message detailing visitor of block. 
+			return new Response(`You have been blocked from accessing this site - Score is kinda bad, look:  ${JSON.stringify(request.cf.botManagement)}`);
+}
