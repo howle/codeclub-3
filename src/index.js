@@ -29,18 +29,27 @@
 
 
 	async function handleRequest(request) { 
+
 		// set userScore
 		const userScore = (request.cf.botManagement.score); 
-		// determine int for "badscore"
-		const badScore = 40 ;
+		// determine int for "badscore" 42 (hitchhike badscore)
+		const badScore = 42 ;
 		// create boolean - human is true
 		const humanTrueBool = userScore > badScore ; 
+		//capture boolean for verified bot and create var to reference
+		const verifiedBot = (request.cf.botManagement.verifiedBot);
+		//console.log(verifiedBot);
 		
-		if (humanTrueBool) { 
-			//  if true then;
-			return new Response("Welcome Human :)")
+		
+		if (verifiedBot) { 
+			//  if truly VerifiedBot, return site;
+			return new Response("Welcome Verified Bot :)")
 		}
-		else
-		// return JSON of request.cf.botManagement field and message detailing visitor of block. 
+		else if (humanTrueBool) { 
+			// if not a verified bot, but "truly human" (>booltrue) - return site
+		
+		return new Response("Welcome Human :)") 
+	}
+		// if not verified bot or good score, block & return JSON of request.cf.botManagement field and message detailing visitor of block. 
 			return new Response(`You have been blocked from accessing this site - Score is kinda bad, look:  ${JSON.stringify(request.cf.botManagement)}`);
 }
