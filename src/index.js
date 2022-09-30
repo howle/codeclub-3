@@ -41,15 +41,11 @@
 		//console.log(verifiedBot);
 		
 		
-		if (verifiedBot) { 
-			//  if truly VerifiedBot, return site;
-			return new Response("Welcome Verified Bot :)")
-		}
-		else if (humanTrueBool) { 
-			// if not a verified bot, but "truly human" (>booltrue) - return site
-		
-		return new Response("Welcome Human :)") 
-	}
-		// if not verified bot or good score, block & return JSON of request.cf.botManagement field and message detailing visitor of block. 
+		if (verifiedBot || humanTrueBool) { 
+			//  if verified Bot  allow, else, eval if humanTrue & allow;
+			return new Response(`If you can see this, you're either a cool bot or likely a human. Great job.\n\n\nCountry:${JSON.stringify(request.cf.country)}\nColocation:${JSON.stringify(request.cf.colo)} `)
+		} 
+		else 
+				// if not verified bot or good score, block & return JSON of request.cf.botManagement field and message detailing visitor of block. 
 			return new Response(`You have been blocked from accessing this site - Score is kinda bad, look:  ${JSON.stringify(request.cf.botManagement)}`);
 }
