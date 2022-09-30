@@ -35,11 +35,12 @@
 		const badScore = 40 ;
 		// create boolean - human is true
 		const humanTrueBool = userScore > badScore ; 
-		//  if true then; 		
+		
 		if (humanTrueBool) { 
+			//  if true then;
 			return new Response("Welcome Human :)")
 		}
 		else
-		//return JSON of request.cf.botManagement field and message detailing visitor of block. 
+		// return JSON of request.cf.botManagement field and message detailing visitor of block. 
 			return new Response(`You have been blocked from accessing this site - Score is kinda bad, look:  ${JSON.stringify(request.cf.botManagement)}`);
 }
